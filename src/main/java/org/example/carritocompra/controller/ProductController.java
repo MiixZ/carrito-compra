@@ -1,11 +1,15 @@
-package Controllers;
+package org.example.carritocompra.controller;
 
-import Services.ProductService;
+
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.carritocompra.models.Producto;
+import org.example.carritocompra.services.ProductService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.util.List;
+
+@Controller
 @AllArgsConstructor
 @RequestMapping("/productApi")
 public class ProductController {
@@ -17,8 +21,8 @@ public class ProductController {
     * @return List of all products
     */
     @GetMapping("/products")
-    public String getProducts() {
-        return productService.getAllProducts().toString();
+    public List<Producto> getProducts() {
+        return productService.getAllProducts();
     }
 
     /*
@@ -37,7 +41,7 @@ public class ProductController {
     * @return Product saved
     */
     @PostMapping("/saveProduct")
-    public void saveProduct(@RequestBody Models.Producto product) {
+    public void saveProduct(Producto product) {
         productService.saveProduct(product);
     }
 
@@ -46,8 +50,10 @@ public class ProductController {
     * @param id
     * @return void
     */
-    @DeleteMapping("/deleteProduct/{id}")
-    public void deleteProduct(@RequestParam Long id) {
+    @PostMapping("/deleteProduct/{id}")
+    public String deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
+
+        return "redirect:/productos";
     }
 }
