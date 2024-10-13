@@ -17,6 +17,10 @@ public class ProductService {
         return productRepo.findAll();
     }
 
+    public List<Producto> getAllProductsOnChart() {
+        return productRepo.findAllByOnChart(true);
+    }
+
     public Producto getProductById(Long id) {
         return productRepo.findById(id).orElse(null);
     }

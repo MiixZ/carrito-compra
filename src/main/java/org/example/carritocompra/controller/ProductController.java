@@ -15,6 +15,7 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
+    private final String REDIRECT_PRODUCTS = "redirect:/productos";
 
     /*
     *
@@ -23,6 +24,11 @@ public class ProductController {
     @GetMapping("/products")
     public List<Producto> getProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/productsOnChart")
+    public List<Producto> getProductsOnChart() {
+        return productService.getAllProductsOnChart();
     }
 
     /*
@@ -41,8 +47,11 @@ public class ProductController {
     * @return Product saved
     */
     @PostMapping("/saveProduct")
-    public void saveProduct(Producto product) {
+    public String saveProduct(@ModelAttribute Producto product) {
+        product.setOnChart(false);
         productService.saveProduct(product);
+
+        return this.REDIRECT_PRODUCTS;
     }
 
     /*
@@ -54,6 +63,6 @@ public class ProductController {
     public String deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
 
-        return "redirect:/productos";
+        return this.REDIRECT_PRODUCTS;
     }
 }

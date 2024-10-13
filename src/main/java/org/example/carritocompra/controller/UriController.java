@@ -22,11 +22,20 @@ public class UriController {
         return "formulario";
     }
 
+    @GetMapping("/carrito")
+    public String getUriCarrito(Model model) {
+        model.addAttribute("productos", productController.getProductsOnChart());
+        return "carrito";
+    }
+
     @GetMapping("/productos")
     public String getUriProductos(Model model) {
-        Producto producto = new Producto();
-
         model.addAttribute("productos", productController.getProducts());
         return "productos";
+    }
+
+    @GetMapping("/login")
+    public String getUriLogin() {
+        return "login";
     }
 }
