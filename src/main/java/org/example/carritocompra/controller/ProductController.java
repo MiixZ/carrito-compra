@@ -2,6 +2,7 @@ package org.example.carritocompra.controller;
 
 
 import lombok.AllArgsConstructor;
+import org.example.carritocompra.models.PrecioModel;
 import org.example.carritocompra.models.Producto;
 import org.example.carritocompra.services.ProductService;
 import org.springframework.stereotype.Controller;
@@ -37,8 +38,8 @@ public class ProductController {
     * @return Product by id
     */
     @GetMapping("/product")
-    public String getProductById(@RequestParam Long id) {
-        return productService.getProductById(id).toString();
+    public Producto getProductById(@RequestParam Long id) {
+        return productService.getProductById(id);
     }
 
     /*
@@ -52,6 +53,16 @@ public class ProductController {
         productService.saveProduct(product);
 
         return this.REDIRECT_PRODUCTS;
+    }
+
+    /*
+    *
+    * @param product
+    * @return Products by price
+     */
+    @PostMapping("/productsByPrice")
+    public List<Producto> getProductsByPrice(@ModelAttribute PrecioModel precio) {
+        return productService.getProductsByPrice(precio);
     }
 
     /*

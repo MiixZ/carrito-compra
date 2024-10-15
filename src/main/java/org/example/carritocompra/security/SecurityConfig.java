@@ -19,6 +19,7 @@ public class SecurityConfig {
                     .requestMatchers(
                         "/",
                         "/productos",
+                        "/productosPrecio",
                         "/h2-console/**",
                         "/login"
                     )
@@ -26,6 +27,7 @@ public class SecurityConfig {
                     .requestMatchers(
                         "/productApi/**",
                         "/chartApi/**",
+                        "/adminApi/**",
                         "/formulario",
                         "/carrito"
                     )

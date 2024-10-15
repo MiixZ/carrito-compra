@@ -12,4 +12,7 @@ public interface ProductRepo extends JpaRepository<Producto, Long> {
 
     @Query("SELECT p FROM Producto p WHERE p.onChart = ?1")
     List<Producto> findAllByOnChart(boolean onChart);
+
+    @Query("SELECT p FROM Producto p WHERE p.precio BETWEEN ?1 AND ?2")
+    List<Producto> findByPrecioBetween(double minPrecio, double maxPrecio);
 }

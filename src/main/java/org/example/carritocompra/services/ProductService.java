@@ -1,6 +1,7 @@
 package org.example.carritocompra.services;
 
 import lombok.AllArgsConstructor;
+import org.example.carritocompra.models.PrecioModel;
 import org.example.carritocompra.repositories.ProductRepo;
 import org.example.carritocompra.models.Producto;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,9 @@ public class ProductService {
 
     public void deleteProduct(Long id) {
         productRepo.deleteById(id);
+    }
+
+    public List<Producto> getProductsByPrice(PrecioModel precioModel) {
+        return productRepo.findByPrecioBetween(precioModel.getMinPrecio(), precioModel.getMaxPrecio());
     }
 }
