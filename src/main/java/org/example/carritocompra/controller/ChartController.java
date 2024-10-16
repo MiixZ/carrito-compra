@@ -28,4 +28,11 @@ public class ChartController {
 
         return this.REDIRECT_PRODUCTS;
     }
+
+    @PostMapping("/generateOrder")
+    public String generateOrder() {
+        //chartService.generateOrder();
+
+        return this.REDIRECT_PRODUCTS;
+    }
 }

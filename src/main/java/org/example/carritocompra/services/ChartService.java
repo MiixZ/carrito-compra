@@ -1,8 +1,13 @@
 package org.example.carritocompra.services;
 
 import lombok.AllArgsConstructor;
+import org.example.carritocompra.models.Producto;
 import org.example.carritocompra.repositories.ProductRepo;
 import org.springframework.stereotype.Service;
+
+import javax.swing.text.Document;
+import java.io.FileWriter;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -23,4 +28,6 @@ public class ChartService {
             productRepo.save(product);
         });
     }
+
+
 }

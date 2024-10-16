@@ -16,7 +16,7 @@ import java.util.List;
 public class ProductController {
 
     private ProductService productService;
-    private final String REDIRECT_PRODUCTS = "redirect:/productos";
+    private final String REDIRECT_PRODUCTS = "redirect:/catalogo";
 
     /*
     *

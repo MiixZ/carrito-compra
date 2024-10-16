@@ -15,24 +15,30 @@ public class UriController {
     private final ProductController productController;
 
     @GetMapping("/")
-    public String getUriHome() {
-        return "productos";
+    public String getUriHome(Model model) {
+        return this.getUriCatalogo(model);
     }
 
-@GetMapping("/formulario")
-public String getUriFormulario(@RequestParam(value = "id", required = false) Long id, Model model) {
-    if (id != null) {
-        Producto producto = productController.getProductById(id);
-        model.addAttribute("product", producto);
-    }
+    @GetMapping("/formulario")
+    public String getUriFormulario(@RequestParam(value = "id", required = false) Long id, Model model) {
+        if (id != null) {
+            Producto producto = productController.getProductById(id);
+            model.addAttribute("product", producto);
+        }
 
-    return "formulario";
-}
+        return "formulario";
+    }
 
     @GetMapping("/carrito")
     public String getUriCarrito(Model model) {
         model.addAttribute("productos", productController.getProductsOnChart());
         return "carrito";
+    }
+
+    @GetMapping("/catalogo")
+    public String getUriCatalogo(Model model) {
+        model.addAttribute("productos", productController.getProducts());
+        return "catalogo";
     }
 
     @GetMapping("/productos")
@@ -46,7 +52,7 @@ public String getUriFormulario(@RequestParam(value = "id", required = false) Lon
         PrecioModel precioModel = new PrecioModel(minPrecio, maxPrecio);
 
         model.addAttribute("productos", productController.getProductsByPrice(precioModel));
-        return "productos";
+        return "catalogo";
     }
 
     @GetMapping("/login")
