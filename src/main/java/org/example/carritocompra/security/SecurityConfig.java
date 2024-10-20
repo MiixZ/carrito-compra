@@ -42,32 +42,27 @@ public class SecurityConfig {
         http
         .authorizeHttpRequests(authorizeRequests -> {
             authorizeRequests
-                .requestMatchers(
-                    "/",
-                    "/catalogo",
-                    "/productApi/**",
-                    "/login"
-                )
-                .permitAll()
-                .requestMatchers(
-                    "/chartApi/**",
-                    "/productosPrecio",
-                    "/productApi/**",
-                    "/carrito"
-                )
-                .hasRole("USER")
-                .requestMatchers(
-                    "/productos",
-                    "/chartApi/**",
-                    "/catalogo",
-                    "/productosPrecio",
-                    "/productApi/**",
-                    "/carrito",
-                    "/adminApi/**",
-                    "/h2-console/**",
-                    "/formulario"
-                )
-                .hasRole("ADMIN");
+                    .requestMatchers(
+                            "/",
+                            "/catalogo",
+                            "/productApi/**",
+                            "/login"
+                    )
+                    .permitAll()
+                    .requestMatchers(
+                            "/chartApi/**",
+                            "/productosPrecio",
+                            "/productApi/**",
+                            "/carrito"
+                    )
+                    .hasAnyRole("USER", "ADMIN")
+                    .requestMatchers(
+                            "/productos",
+                            "/adminApi/**",
+                            "/h2-console/**",
+                            "/formulario"
+                    )
+                    .hasRole("ADMIN");
         })
         .formLogin(formLogin -> formLogin
             .loginPage("/login").permitAll()
