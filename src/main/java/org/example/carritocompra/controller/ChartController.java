@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import jakarta.servlet.http.HttpServletResponse;
+
 @Controller
 @AllArgsConstructor
 @RequestMapping("/chartApi")
@@ -30,9 +32,7 @@ public class ChartController {
     }
 
     @PostMapping("/generateOrder")
-    public String generateOrder() {
-        //chartService.generateOrder();
-
-        return this.REDIRECT_PRODUCTS;
+    public void generateOrder(HttpServletResponse response) {
+        chartService.generateOrder(response);
     }
 }

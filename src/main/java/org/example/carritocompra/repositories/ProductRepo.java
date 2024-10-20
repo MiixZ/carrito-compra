@@ -2,6 +2,7 @@ package org.example.carritocompra.repositories;
 
 import org.example.carritocompra.models.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,8 @@ public interface ProductRepo extends JpaRepository<Producto, Long> {
 
     @Query("SELECT p FROM Producto p WHERE p.precio BETWEEN ?1 AND ?2")
     List<Producto> findByPrecioBetween(double minPrecio, double maxPrecio);
+
+    @Modifying
+    @Query("UPDATE Producto p SET p.onChart = false")
+    void setAllProductsNotInChart();
 }

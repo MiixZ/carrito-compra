@@ -19,16 +19,18 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("USER")
-                .build());
-        manager.createUser(User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN")
-                .build());
+        manager
+            .createUser(User.builder()
+            .username("user")
+            .password(passwordEncoder().encode("user"))
+            .roles("USER")
+            .build());
+        manager
+            .createUser(User.builder()
+            .username("admin")
+            .password(passwordEncoder().encode("admin"))
+            .roles("ADMIN")
+            .build());
         return manager;
     }
 
@@ -42,27 +44,27 @@ public class SecurityConfig {
         http
         .authorizeHttpRequests(authorizeRequests -> {
             authorizeRequests
-                    .requestMatchers(
-                            "/",
-                            "/catalogo",
-                            "/productApi/**",
-                            "/login"
-                    )
-                    .permitAll()
-                    .requestMatchers(
-                            "/chartApi/**",
-                            "/productosPrecio",
-                            "/productApi/**",
-                            "/carrito"
-                    )
-                    .hasAnyRole("USER", "ADMIN")
-                    .requestMatchers(
-                            "/productos",
-                            "/adminApi/**",
-                            "/h2-console/**",
-                            "/formulario"
-                    )
-                    .hasRole("ADMIN");
+                .requestMatchers(
+                    "/",
+                    "/catalogo",
+                    "/productApi/**",
+                    "/productosPrecio",
+                    "/login"
+                )
+                .permitAll()
+                .requestMatchers(
+                    "/chartApi/**",
+                    "/productApi/**",
+                    "/carrito"
+                )
+                .hasAnyRole("USER", "ADMIN")
+                .requestMatchers(
+                    "/productos",
+                    "/adminApi/**",
+                    "/h2-console/**",
+                    "/formulario"
+                )
+                .hasRole("ADMIN");
         })
         .formLogin(formLogin -> formLogin
             .loginPage("/login").permitAll()
@@ -71,7 +73,7 @@ public class SecurityConfig {
             .logoutUrl("/logout")
             .logoutSuccessUrl("/login?logout").permitAll())
                 .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .accessDeniedPage("/catalogo"))
+                    .accessDeniedPage("/catalogo"))
         .csrf(csrf -> csrf
             .ignoringRequestMatchers("/h2-console/**"))
         .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
