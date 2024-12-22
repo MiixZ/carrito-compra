@@ -1,5 +1,6 @@
 package org.example.carritocompra.services;
 
+import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
 import org.example.carritocompra.models.ImageProduct;
 import org.example.carritocompra.models.Producto;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,5 +103,51 @@ public class AndroidProductService {
         }
 
         return null;
+    }
+
+    public Producto createProduct(ImageProduct imageProduct) {
+        Producto producto = new Producto();
+        producto.setNombre(imageProduct.getName());
+        producto.setPrecio(imageProduct.getPrice());
+        producto.setOnChart(false);
+        productRepo.save(producto);
+
+        if (imageProduct.getImage() != null && imageProduct.getImage().length > 0) {
+            try {
+                Path imagePath = Paths.get("target/classes/images/" + producto.getId() + ".jpg");
+                Files.createDirectories(imagePath.getParent());
+                Files.write(imagePath, imageProduct.getImage(), StandardOpenOption.CREATE);
+            } catch (IOException e) {
+                e.printStackTrace();
+
+                return null;
+            }
+        }
+
+        return producto;
+    }
+
+    public void deleteProduct(Long productId) {
+        productRepo.deleteById(productId);
+
+        try {
+            Path imagePath = Paths.get("target/classes/images/" + productId + ".jpg");
+            Files.deleteIfExists(imagePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void confirmBuy(String email) {
+        productRepo.setAllProductsNotInChart();
+    }
+
+    @PostConstruct
+    public void iniciar() {
+        if (productRepo.findAll().isEmpty()) {
+            this.createProduct(new ImageProduct(1L, "Coca Cola", 120, new byte[0]));
+            this.createProduct(new ImageProduct(2L, "Fanta de naranja", 130, new byte[0]));
+            this.createProduct(new ImageProduct(3L, "Sprite", 140, new byte[0]));
+        }
     }
 }

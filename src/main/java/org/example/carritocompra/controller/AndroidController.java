@@ -8,10 +8,7 @@ import org.example.carritocompra.models.User;
 import org.example.carritocompra.services.AndroidProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,5 +47,21 @@ public class AndroidController {
     @GetMapping("/cart/addProductToCart")
     public void addProductToCart(@RequestParam String email, @RequestParam Long productId) {
         this.chartController.addProduct(productId);
+    }
+
+    @PostMapping("/product/createProduct")
+    public Producto createProduct(@RequestBody ImageProduct imageProduct) {
+        return this.AndroidProductService.createProduct(imageProduct);
+    }
+
+    @DeleteMapping("/product/deleteProduct")
+    public String deleteProduct(@RequestParam Long id) {
+        this.AndroidProductService.deleteProduct(id);
+        return "Product deleted";
+    }
+
+    @GetMapping("/cart/confirmBuy")
+    public void confirmBuy(@RequestParam String email) {
+        this.AndroidProductService.confirmBuy(email);
     }
 }
