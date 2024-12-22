@@ -1,0 +1,12 @@
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\CarritoCompraApplication.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\controller\AdminController.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\controller\ChartController.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\controller\ProductController.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\controller\UriController.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\models\PrecioModel.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\models\Producto.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\repositories\ProductRepo.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\security\SecurityConfig.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\services\ChartService.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\services\DatabaseService.java
+D:\dev\DSS\practica1\carrito-compra\src\main\java\org\example\carritocompra\services\ProductService.java

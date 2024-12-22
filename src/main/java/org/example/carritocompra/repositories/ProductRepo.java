@@ -1,5 +1,6 @@
 package org.example.carritocompra.repositories;
 
+import jakarta.transaction.Transactional;
 import org.example.carritocompra.models.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -18,6 +19,7 @@ public interface ProductRepo extends JpaRepository<Producto, Long> {
     List<Producto> findByPrecioBetween(double minPrecio, double maxPrecio);
 
     @Modifying
+    @Transactional
     @Query("UPDATE Producto p SET p.onChart = false")
     void setAllProductsNotInChart();
 }

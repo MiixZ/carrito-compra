@@ -47,6 +47,9 @@ public class SecurityConfig {
                 .requestMatchers(
                     "/",
                     "/catalogo",
+                    "/product/**",
+                    "/cart/**",
+                    "/user/**",
                     "/productApi/**",
                     "/productosPrecio",
                     "/login"
@@ -75,7 +78,7 @@ public class SecurityConfig {
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                     .accessDeniedPage("/catalogo"))
         .csrf(csrf -> csrf
-            .ignoringRequestMatchers("/h2-console/**"))
+            .ignoringRequestMatchers("/h2-console/**", "/product/**", "/chart/**"))
         .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
         return http.build();
