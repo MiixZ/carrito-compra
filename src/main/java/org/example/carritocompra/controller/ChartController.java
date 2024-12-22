@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ChartController {
 
     private ChartService chartService;
-    private final String REDIRECT_PRODUCTS = "redirect:/carrito";
+    private final String REDIRECT_PRODUCTS = "redirect:/web/carrito";
 
     @PostMapping("/addProduct/{id}")
     public String addProduct(@PathVariable Long id) {

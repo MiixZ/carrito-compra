@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-12">
 
-          <form th:action="@{/productosPrecio}" method="get" class="mb-4">
+          <form th:action="@{/web/productosPrecio}" method="get" class="mb-4">
             <div class="row">
               <div class="col-md-4">
                 <label>
@@ -56,20 +56,20 @@
           </table>
 
           <div class="text-center mt-4">
-            <a href="/carrito" class="btn btn-success">Ir a carrito</a>
+            <a href="/web/carrito" class="btn btn-success">Ir a carrito</a>
           </div>
 
           <div class="text-center mt-4" sec:authorize="hasRole('ADMIN')">
-            <a href="/productos" class="btn btn-primary">Administrar productos</a>
+            <a href="/web/productos" class="btn btn-primary">Administrar productos</a>
           </div>
 
           <div class="text-center mt-4" sec:authorize="isAuthenticated()">
-            <form th:action="@{/logout}" method="post" class="d-inline">
+            <form th:action="@{/web/logout}" method="post" class="d-inline">
               <button type="submit" class="btn btn-danger">Logout</button>
             </form>
           </div>
           <div class="text-center mt-4" sec:authorize="isAnonymous()">
-            <a href="/login" class="btn btn-primary">Login</a>
+            <a href="/web/login" class="btn btn-primary">Login</a>
           </div>
         </div>
       </div>

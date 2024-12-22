@@ -13,7 +13,6 @@
             <!-- Tabla de productos -->
             <div class="row">
                 <div class="col-12">
-
                     <form th:action="@{/productosPrecio}" method="get" class="mb-4">
                         <div class="row">
                             <div class="col-md-4">
@@ -51,7 +50,7 @@
                                         <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </form>
                                     <div class="text-center">
-                                        <a th:href="@{/formulario(id=${product.id})}" class="btn btn-success">Editar</a>
+                                        <a th:href="@{/web/formulario(id=${product.id})}" class="btn btn-success">Editar</a>
                                     </div>
                                     <form th:action="@{/chartApi/addProduct/{id}(id=${product.id})}" method="post">
                                         <button type="submit" class="btn btn-primary">Agregar al Carrito</button>
@@ -62,11 +61,11 @@
                     </table>
 
                     <div class="text-center mt-4">
-                        <a href="/formulario" class="btn btn-success">Agregar Producto</a>
+                        <a href="/web/formulario" class="btn btn-success">Agregar Producto</a>
                     </div>
 
                     <div class="text-center mt-4">
-                        <a href="/catalogo" class="btn btn-success">Ir al catálogo</a>
+                        <a href="/web/catalogo" class="btn btn-success">Ir al catálogo</a>
                     </div>
 
                     <div class="text-center">

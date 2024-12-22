@@ -46,39 +46,39 @@ public class SecurityConfig {
             authorizeRequests
                 .requestMatchers(
                     "/",
-                    "/catalogo",
+                    "/web/catalogo",
                     "/product/**",
                     "/cart/**",
                     "/user/**",
                     "/productApi/**",
-                    "/productosPrecio",
-                    "/login"
+                    "/web/productosPrecio",
+                    "/web/login"
                 )
                 .permitAll()
                 .requestMatchers(
                     "/chartApi/**",
                     "/productApi/**",
-                    "/carrito"
+                    "/web/carrito"
                 )
                 .hasAnyRole("USER", "ADMIN")
                 .requestMatchers(
-                    "/productos",
+                    "/web/productos",
                     "/adminApi/**",
                     "/h2-console/**",
-                    "/formulario"
+                    "/web/formulario"
                 )
                 .hasRole("ADMIN");
         })
         .formLogin(formLogin -> formLogin
-            .loginPage("/login").permitAll()
-            .defaultSuccessUrl("/catalogo", true))
+            .loginPage("/web/login").permitAll()
+            .defaultSuccessUrl("/web/catalogo", false))
         .logout(logout -> logout
-            .logoutUrl("/logout")
+            .logoutUrl("/web/logout")
             .logoutSuccessUrl("/login?logout").permitAll())
                 .exceptionHandling(exceptionHandling -> exceptionHandling
-                    .accessDeniedPage("/catalogo"))
+                    .accessDeniedPage("/web/catalogo"))
         .csrf(csrf -> csrf
-            .ignoringRequestMatchers("/h2-console/**", "/product/**", "/chart/**"))
+            .ignoringRequestMatchers("/h2-console/**", "/product/**", "/chart/**", "/web/**", "/web/login"))
         .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
 
         return http.build();

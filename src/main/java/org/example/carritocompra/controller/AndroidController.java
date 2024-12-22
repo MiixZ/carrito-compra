@@ -20,7 +20,6 @@ import java.util.List;
 @AllArgsConstructor
 public class AndroidController {
 
-    private final ProductController productController;
     private final ChartController chartController;
     private final AndroidProductService AndroidProductService;
 
